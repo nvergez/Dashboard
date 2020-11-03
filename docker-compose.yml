@@ -1,0 +1,8 @@
+version: '3.8'
+services: 
+    server:
+        build: 
+            context: ./app
+        command: npm start
+        ports:
+            - "8080:8080"
