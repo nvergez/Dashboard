@@ -1,4 +1,4 @@
-# Authentification API
+# Authentication API
 
 This microservice use nodeJS as langage and MySQL for the database.
 
