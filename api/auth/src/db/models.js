@@ -2,6 +2,7 @@ var { DataTypes, Model } = require("sequelize");
 
 var sequelize = require("./connection");
 
+
 class User extends Model {}
 User.init(
   {
@@ -61,5 +62,15 @@ UserSession.init(
     updatedAt: false
   }
 );
+
+function syncing() {
+  User.sync();
+  UserSession.sync();
+  console.log("Tables exported !");
+}
+
+console.log("Exporting tables ...")
+
+setTimeout(syncing, 15000);
 
 module.exports = {User, UserSession};
