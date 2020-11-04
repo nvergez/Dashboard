@@ -6,3 +6,22 @@ services:
         command: npm start
         ports:
             - "8080:8080"
+
+    auth-service:
+        build:
+            context: ./api/auth
+        depends_on: 
+            - auth-service-db
+        environment: 
+            - DB_URI=mysql://root:password@auth-service-db/db?charset=UTF8
+        ports:
+            - "9000:9000"
+
+    auth-service-db:
+        environment: 
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=db
+        image: mysql:5.7.20
+        ports: 
+            - 0.0.0.0:7200:3306
+
