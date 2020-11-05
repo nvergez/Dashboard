@@ -1,9 +1,18 @@
 var { addHours } = require("date-fns");
+var nodemailer = require("nodemailer");
 
 var { User, UserSession } = require("../db/models");
 var generateUUID = require("../helpers/generateUUID");
 var hashPassword = require("../helpers/hashPassword");
 var passwordCompareSync = require("../helpers/passwordCompareSync");
+
+var smtpTransport = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+      user: "yourfavoritedashboard@gmail.com",
+      pass: "fei20fn20f2302f02"
+  }
+});
 
 const USER_SESSION_EXPIRY_HOURS = 1;
 
@@ -16,10 +25,14 @@ const setupRoutes = app => {
     try {
       const user = await User.findOne({ attributes: {}, where: { email: req.body.email } });
 
-      if (!user) return next(new Error("Invalid email!"));
+      if (!user) return next(new Error("User not found"));
+
+      if (user.verified == false) {
+        return next(new Error("Unverified user"))
+      }
 
       if (!passwordCompareSync(req.body.password, user.passwordHash)) {
-        return next(new Error("Incorrect password!"));
+        return next(new Error("Incorrect password"));
       }
 
       const expiresAt = addHours(new Date(), USER_SESSION_EXPIRY_HOURS);
@@ -77,6 +90,19 @@ const setupRoutes = app => {
         passwordHash: hashPassword(req.body.password)
       });
 
+      link = "http://localhost:9000/verify?id=" + newUser.id;
+      mailOptions = {
+        to : req.body.email,
+        subject : "Please confirm your email account",
+        html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
+      }
+      smtpTransport.sendMail(mailOptions, function(error, response) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Mail sent");
+        }
+      })
       return res.json(newUser);
     } catch (e) {
       return next(e);
@@ -94,6 +120,19 @@ const setupRoutes = app => {
       return next(e);
     }
   });
+
+  app.get("/verify", async (req, res, next) => {
+    try {
+      const user = await User.findByPk(req.query.id);
+      if (!user) return next(new Error("Invalid link"));
+      user.verified = true;
+      await user.save();
+
+      return res.redirect("http://localhost:8080/dashboard");
+    } catch (e) {
+      return next(e);
+    }
+  })
 };
 
 exports.setupRoutes = setupRoutes;

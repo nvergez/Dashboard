@@ -23,6 +23,11 @@ User.init(
     passwordHash: {
       allowNull: false,
       type: DataTypes.CHAR(64)
+    },
+    verified: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },
   {
