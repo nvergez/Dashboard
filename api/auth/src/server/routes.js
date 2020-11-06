@@ -121,6 +121,20 @@ const setupRoutes = app => {
     }
   });
 
+  app.delete("/users/:userId", async (req, res, next) => {
+    try {
+      const user = await User.findByPk(req.params.userId);
+
+      if (!user) return next(new Error("Invalid session ID"));
+
+      await user.destroy();
+
+      return res.end();
+    } catch (e) {
+      return next(e);
+    }
+  });
+
   app.get("/verify", async (req, res, next) => {
     try {
       const user = await User.findByPk(req.query.id);
