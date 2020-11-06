@@ -16,8 +16,6 @@ services:
             - DB_URI=mysql://root:password@auth-service-db/db?charset=UTF8
         ports:
             - "9000:9000"
-        volumes:
-            - ./api/auth:/app
 
 
     auth-service-db:
