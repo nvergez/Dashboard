@@ -36,6 +36,17 @@ URL: `/users/:userId`
 BODY: `null`  
 
 ---
+### Delete user by id 
+
+Delete current user with the userId in parameter.
+
+Request type: `DELETE`  
+
+URL: `/users/:userId`  
+
+BODY: `null` 
+
+---
 ### Login a user and create session  
 
 Create a session for existing user with email and password. Return sessionId.
