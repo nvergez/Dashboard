@@ -6,6 +6,8 @@ var generateUUID = require("../helpers/generateUUID");
 var hashPassword = require("../helpers/hashPassword");
 var passwordCompareSync = require("../helpers/passwordCompareSync");
 
+var getImgurAccount = require("../oauth/imgur");
+
 var smtpTransport = nodemailer.createTransport({
   service: "Gmail",
   auth: {
@@ -146,7 +148,28 @@ const setupRoutes = app => {
     } catch (e) {
       return next(e);
     }
-  })
+  });
+
+  app.post("/oauth_imgur/:userToken", async(req, res, next) => {
+    const account_params = await getImgurAccount(req.params.userToken);
+    console.log(account_params)
+
+    if (!account_params.data.email) return next(new Error("Not email in account"));
+
+    try {
+      const newUser = await User.create({
+        email: account_params.data.email,
+        username: account_params.data.account_url,
+        id: generateUUID(),
+        passwordHash: hashPassword("imgur")
+      });
+
+      return res.json(newUser);
+    } catch (e) {
+      return next(e);
+    }
+
+  });
 };
 
 exports.setupRoutes = setupRoutes;

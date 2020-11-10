@@ -84,6 +84,17 @@ URL: `/sessions/:sessionId`
 
 BODY: `null`  
 
+---
+### Get infos from imgur API
+
+Get the informations of the imgur account which connected with OAuth. 
+
+Request type: `POST`   
+
+URL: `/oauth_imgur/:token`  
+
+BODY: `null`
+
 ## Author
 ---
 - Nicolas Vergez
