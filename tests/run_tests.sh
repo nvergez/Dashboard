@@ -1,4 +1,7 @@
 
+echo "----- Waiting for containers initializations -----"
+
+sleep 30
 
 # Tests for api/auth
 
