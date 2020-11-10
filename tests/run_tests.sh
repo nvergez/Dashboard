@@ -17,4 +17,16 @@ echo "----- Starting tests ... -----"
 
 npm test
 
+echo "----- Tests for Auth API -----"
+
+cd ../server
+
+echo "----- Install dependencies ... -----"
+
+npm install
+
+echo "----- Starting tests ... -----"
+
+npm test
+
 echo "----- Tests finished ! -----"
