@@ -142,7 +142,7 @@ const setupRoutes = app => {
       user.verified = true;
       await user.save();
 
-      return res.redirect("http://localhost:8080/dashboard");
+      return res.redirect("http://localhost/dashboard");
     } catch (e) {
       return next(e);
     }

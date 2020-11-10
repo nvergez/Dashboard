@@ -1,11 +1,11 @@
 version: '3.8'
 services: 
-    server:
+    frontend:
         build: 
             context: ./app
         command: npm start
         ports:
-            - "8080:8080"
+            - "80:8080"
 
     auth-service:
         build:
