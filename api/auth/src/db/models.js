@@ -28,6 +28,11 @@ User.init(
       allowNull: false,
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    facebookUser: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },
   {
