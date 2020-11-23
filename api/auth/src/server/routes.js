@@ -5,6 +5,7 @@ var { User, UserSession } = require("../db/models");
 var generateUUID = require("../helpers/generateUUID");
 var hashPassword = require("../helpers/hashPassword");
 var passwordCompareSync = require("../helpers/passwordCompareSync");
+var getDomain = require("../helpers/getDomain");
 
 var getImgurAccount = require("../oauth/imgur");
 
@@ -92,7 +93,7 @@ const setupRoutes = app => {
         passwordHash: hashPassword(req.body.password)
       });
 
-      link = "http://localhost:9000/verify?id=" + newUser.id;
+      link = getDomain() + ":9000/verify?id=" + newUser.id;
       mailOptions = {
         to : req.body.email,
         subject : "Please confirm your email account",
@@ -144,7 +145,7 @@ const setupRoutes = app => {
       user.verified = true;
       await user.save();
 
-      return res.redirect("http://localhost/dashboard");
+      return res.redirect(getDomain() + "/dashboard");
     } catch (e) {
       return next(e);
     }
