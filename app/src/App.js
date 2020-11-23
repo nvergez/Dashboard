@@ -5,7 +5,8 @@ import LoginForm from './components/LoginForm/LoginForm';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import Home from './components/Home/Home';
 import PrivateRoute from './utils/PrivateRoute';
-import ImgurCallback from './components/CallbackOauth/ImgurCallback'
+import ImgurCallback from './components/CallbackOauth/ImgurCallback';
+import TwitchCallback from './components/CallbackOauth/TwitchCallback';
 import {
   BrowserRouter as Router,
   Switch,
@@ -33,6 +34,9 @@ function App() {
             <Route path="/oauth_imgur">
               <ImgurCallback url={window.location.href} showError={updateErrorMessage} updateTitle={updateTitle}/>
             </Route>
+            <Route path="/oauth_twitch">
+              <TwitchCallback url={window.location.href} showError={updateErrorMessage} updateTitle={updateTitle}/>
+            </Route>
             <PrivateRoute path="/home">
               <Home/>
             </PrivateRoute>
@@ -45,3 +49,5 @@ function App() {
 }
 
 export default App;
+
+/* https://id.twitch.tv/oauth2/authorize?client_id=rkyu7ywqgxxchwqhzk37jgvv1jdx1r&response_type=token&redirect_uri=http://localhost/oauth_twitch */
