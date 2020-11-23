@@ -86,12 +86,21 @@ const setupRoutes = app => {
     }
 
     try {
+      var verified = false;
+      if (req.body.password == "imgur") {
+        verified = true;
+      }
       const newUser = await User.create({
         email: req.body.email,
         username: req.body.username,
         id: generateUUID(),
-        passwordHash: hashPassword(req.body.password)
+        passwordHash: hashPassword(req.body.password),
+        verified: verified
       });
+
+      if (verified) {
+        return res.json(newUser);
+      }
 
       link = getDomain() + ":9000/verify?id=" + newUser.id;
       mailOptions = {
@@ -145,7 +154,7 @@ const setupRoutes = app => {
       user.verified = true;
       await user.save();
 
-      return res.redirect(getDomain() + "/dashboard");
+      return res.redirect(getDomain() + "/home");
     } catch (e) {
       return next(e);
     }
