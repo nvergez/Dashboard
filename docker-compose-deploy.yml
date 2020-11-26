@@ -28,6 +28,13 @@ services:
         ports:
             - "9000:9000"
 
+    twitch-service:
+        build:
+            context: ./api/twitch
+        environment:
+            - DEPLOY_ENV=TRUE
+        ports:
+            - "9001:9001"
 
     auth-service-db:
         environment: 

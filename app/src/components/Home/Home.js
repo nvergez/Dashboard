@@ -2,6 +2,7 @@ import React,{ useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { getUser } from '../../api/users/users';
 import { getUrlTwitch } from '../../api/oauth/Twitch';
+import { getTwitchUsername, getTwitchViews} from '../../api/Twitch/Twitch';
 
 function Home(props) {
     useEffect(() => {
@@ -19,9 +20,11 @@ function Home(props) {
 
     return(
         <div className="mt-2">
-            Home page content
-            <div className="loginImgur">
-                <a href={getUrlTwitch()}>Connect my Twitch account</a>
+            Home page
+            <div className="ServiceTwitch">
+                <div className="loginTwitch">
+                    <a href={getUrlTwitch()}>Connect my Twitch account</a>
+                </div>
             </div>
         </div>
     )
