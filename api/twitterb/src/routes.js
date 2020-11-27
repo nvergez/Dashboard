@@ -20,7 +20,7 @@ const setupRoute = app => {
                 access_token_secret: secret
             })
             client.get('followers/ids', function(error, followers, response) {
-                if(error) throw error;
+                if(error) return res.json(error);
                 result = {count: followers.ids.length};
                 return res.json(result);
               });
@@ -48,7 +48,7 @@ const setupRoute = app => {
                 return res.json({status: "OK"});
             })
             .catch(function (error) {
-                throw error;
+                return res.json(error);
             })
         } catch (e) {
             return next(e)
@@ -69,7 +69,7 @@ const setupRoute = app => {
                 access_token_secret: secret
             })
             client.get('direct_messages/events/list', function(error, dms, response) {
-                if(error) throw error;
+                if(error) return res.json(error);
                 result = {message: dms.events[0].message_create.message_data.text};
                 //console.log(dms);
                 return res.json(result);
