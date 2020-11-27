@@ -8,3 +8,7 @@
     color: green;
     font-weight: bold;
 }
+
+.rem {
+    font-size: 2rem;
+}

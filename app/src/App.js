@@ -12,7 +12,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import AlertComponent from './components/AlertComponent/AlertComponent';  
+import AlertComponent from './components/AlertComponent/AlertComponent';
 function App() {
   const [title, updateTitle] = useState(null);
   const [errorMessage, updateErrorMessage] = useState(null);

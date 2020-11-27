@@ -11,7 +11,7 @@ function LoginForm(props) {
         successMessage: null
     })
     const handleChange = (e) => {
-        const {id , value} = e.target   
+        const {id , value} = e.target
         setState(prevState => ({
             ...prevState,
             [id] : value
@@ -39,7 +39,7 @@ function LoginForm(props) {
                 props.showError("Bad credential");
             })
         } else {
-            props.showError('Please enter valid username and password')    
+            props.showError('Please enter valid username and password')
         }
     }
     const redirectToHome = () => {
@@ -47,19 +47,20 @@ function LoginForm(props) {
         props.history.push('/home');
     }
     const redirectToRegister = () => {
-        props.history.push('/register'); 
+        props.history.push('/register');
         props.updateTitle('Register');
     }
     return(
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
+        <div className="card col-12 col-lg-4 login-card mt-2 hv-center" style={{top:100}}>
             <form>
+                <div className="rem">Login</div>
                 <div className="form-group text-left">
                 <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" 
-                       className="form-control" 
-                       id="email" 
-                       aria-describedby="emailHelp" 
-                       placeholder="Enter email" 
+                <input type="email"
+                       className="form-control"
+                       id="email"
+                       aria-describedby="emailHelp"
+                       placeholder="Enter email"
                        value={state.email}
                        onChange={handleChange}
                 />
@@ -67,18 +68,18 @@ function LoginForm(props) {
                 </div>
                 <div className="form-group text-left">
                 <label htmlFor="exampleInputPassword1">Password</label>
-                <input type="password" 
-                       className="form-control" 
-                       id="password" 
+                <input type="password"
+                       className="form-control"
+                       id="password"
                        placeholder="Password"
                        value={state.password}
-                       onChange={handleChange} 
+                       onChange={handleChange}
                 />
                 </div>
                 <div className="form-check">
                 </div>
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     className="btn btn-primary"
                     onClick={handleSubmitClick}
                 >Submit</button>
@@ -88,7 +89,7 @@ function LoginForm(props) {
             </div>
             <div className="registerMessage">
                 <span>Dont have an account? </span>
-                <span className="loginText" onClick={() => redirectToRegister()}>Register</span> 
+                <span className="loginText" onClick={() => redirectToRegister()}>Register</span>
             </div>
             <div className="loginImgur">
                 <a href={getUrlImgur()}>Login with Imgur</a>

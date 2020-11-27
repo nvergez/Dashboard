@@ -5,3 +5,7 @@
 .registerMessage {
     margin-top: 10vh;
 }
+
+.rem {
+    font-size: 2rem;
+}
