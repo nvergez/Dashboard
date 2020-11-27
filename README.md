@@ -12,6 +12,8 @@ We chose ReactJS for the frontend service and all the others uses nodeJS.
 ---
 ## Documentation
 - [Authentication service](api/auth)
+- [Twitter service](api/twitterb)
+- [Twitch service](api/twitch)
 - [Frontend](app)
 ---
 ## Authors
