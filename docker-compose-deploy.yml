@@ -36,6 +36,14 @@ services:
         ports:
             - "9001:9001"
 
+    twitter-service:
+        build:
+            context: ./api/twitterb
+        environment:
+            - DEPLOY_ENV=TRUE
+        ports:
+            - "9002:9002"
+
     auth-service-db:
         environment: 
             - MYSQL_ROOT_PASSWORD=password
