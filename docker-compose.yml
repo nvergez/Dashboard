@@ -44,6 +44,14 @@ services:
         ports:
             - "9002:9002"
 
+    youtube-service:
+        build:
+            context: ./api/youtube
+        environment:
+            - DEPLOY_ENV=FALSE
+        ports:
+            - "9003:9003"
+
 
     auth-service-db:
         environment: 
