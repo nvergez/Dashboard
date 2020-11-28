@@ -3,7 +3,7 @@ const axios = require("axios")
 function getUrlImgur() {
     var id = '';
 
-    if (process.env.DEPLOY_ENV == "TRUE") {
+    if (process.env.DEPLOY_ENV === "TRUE") {
         id = '80349a8d6eea645';
     } else {
         id = '510b034631f364b';

@@ -15,7 +15,7 @@ async function getFollowersCount(token, secret) {
 async function newTweet(token, secret, tweet) {
     const res = await axios.post(getDomain() + ':9002/tweet?token=' + token + '&secret=' + secret,
     {tweet: tweet})
-    if (res.data.status == "OK") {
+    if (res.data.status === "OK") {
         return true;
     } else {
         return false;
