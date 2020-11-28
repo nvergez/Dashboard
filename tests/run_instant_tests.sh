@@ -1,5 +1,4 @@
 
-
 # Tests for api/auth
 
 echo "----- Tests for Auth API -----"

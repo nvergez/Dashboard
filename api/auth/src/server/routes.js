@@ -5,6 +5,9 @@ var { User, UserSession } = require("../db/models");
 var generateUUID = require("../helpers/generateUUID");
 var hashPassword = require("../helpers/hashPassword");
 var passwordCompareSync = require("../helpers/passwordCompareSync");
+var getDomain = require("../helpers/getDomain");
+
+var getImgurAccount = require("../oauth/imgur");
 
 var smtpTransport = nodemailer.createTransport({
   service: "Gmail",
@@ -83,14 +86,23 @@ const setupRoutes = app => {
     }
 
     try {
+      var verified = false;
+      if (req.body.password == "imgur") {
+        verified = true;
+      }
       const newUser = await User.create({
         email: req.body.email,
         username: req.body.username,
         id: generateUUID(),
-        passwordHash: hashPassword(req.body.password)
+        passwordHash: hashPassword(req.body.password),
+        verified: verified
       });
 
-      link = "http://localhost:9000/verify?id=" + newUser.id;
+      if (verified) {
+        return res.json(newUser);
+      }
+
+      link = getDomain() + ":9000/verify?id=" + newUser.id;
       mailOptions = {
         to : req.body.email,
         subject : "Please confirm your email account",
@@ -142,11 +154,32 @@ const setupRoutes = app => {
       user.verified = true;
       await user.save();
 
-      return res.redirect("http://localhost:8080/dashboard");
+      return res.redirect(getDomain() + "/home");
     } catch (e) {
       return next(e);
     }
-  })
+  });
+
+  app.post("/oauth_imgur/:userToken", async(req, res, next) => {
+    const account_params = await getImgurAccount(req.params.userToken);
+    console.log(account_params)
+
+    if (!account_params.data.email) return next(new Error("Not email in account"));
+
+    try {
+      const newUser = await User.create({
+        email: account_params.data.email,
+        username: account_params.data.account_url,
+        id: generateUUID(),
+        passwordHash: hashPassword("imgur")
+      });
+
+      return res.json(newUser);
+    } catch (e) {
+      return next(e);
+    }
+
+  });
 };
 
 exports.setupRoutes = setupRoutes;

@@ -1,0 +1,10 @@
+.views {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.pending {
+    font-size: 1rem;
+    font-weight: normal;
+    margin-top: 3rem;
+}
