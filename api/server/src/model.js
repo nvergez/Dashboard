@@ -46,6 +46,9 @@ const about = {
                 params: [{
                     name: "auth",
                     type: "string"
+                }, {
+                    name: "language",
+                    type: "string"
                 }]
             }, {
                 name: "aStream",

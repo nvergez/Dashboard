@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Widget from '../Widget';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 
 import { getBestStream } from '../../../api/Twitch/Twitch';
 
@@ -15,6 +17,7 @@ class BestStreamWidget extends Component {
             streamer: "",
             game: "",
             viewers: "",
+            scope: "en",
             loading: true
         }
 
@@ -24,7 +27,7 @@ class BestStreamWidget extends Component {
     componentDidMount() {
         this._isMounted = true;
         this.getData().then(_ => {
-            this.interval = setInterval(this.getData, 15000);
+            this.interval = setInterval(this.getData, 10000);
         });
     }
 
@@ -33,12 +36,18 @@ class BestStreamWidget extends Component {
     }
 
     getData() {
-        return getBestStream(localStorage.getItem("TOKEN_TWITCH"))
+        return getBestStream(localStorage.getItem("TOKEN_TWITCH"), this.state.scope)
         .then((value) => {
             if (this._isMounted) {
-                this.setState({streamer: value.user_name, game: value.game_name, viewers: value.viewer_count, loading: false});
+                this.setState({streamer: value.user_name, game: value.game_name, viewers: value.viewer_count, loading: false, scope: this.state.scope});
             }
         })
+    }
+
+    handleChange = (e) => {
+        if (this._isMounted) {
+            this.setState({streamer: this.state.streamer, game: this.state.game, viewers: this.state.viewers, loading: true, scope: e});
+        }
     }
 
     showData() {
@@ -56,6 +65,10 @@ class BestStreamWidget extends Component {
     render() {
         return (
             <Widget heading={this.props.heading} colspan={this.props.colspan} rowspan={this.props.rowspan} >
+                <ToggleButtonGroup type="radio" name="options" defaultValue={"en"} size='sm' onChange={this.handleChange}>
+                    <ToggleButton value={"en"}>Worldwide </ToggleButton>
+                    <ToggleButton value={"fr"}>France</ToggleButton>
+                </ToggleButtonGroup>
                 {this.showData()}
             </Widget>
         )

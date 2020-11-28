@@ -31,6 +31,11 @@ Request type: `GET`
 
 URL: `/best_stream/:token`
 
+Query:
+{
+    lang="fr"
+}
+
 
 Return:
 ```

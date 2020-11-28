@@ -20,14 +20,25 @@ const setupRoute = app => {
     app.get("/best_stream/:token", async (req, res, next) => {
         try {
             const token = req.params.token;
+            const lang = req.query.lang;
 
-            const result = await axios.get('https://api.twitch.tv/helix/streams?first=1', {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                    'Client-id': 'rkyu7ywqgxxchwqhzk37jgvv1jdx1r'
-                }
-            });
-            return res.json(result.data.data[0]);
+            if (lang === "fr") {
+                const result = await axios.get('https://api.twitch.tv/helix/streams?first=1&language=fr', {
+                    headers: {
+                        Authorization: 'Bearer ' + token,
+                        'Client-id': 'rkyu7ywqgxxchwqhzk37jgvv1jdx1r'
+                    }
+                });
+                return res.json(result.data.data[0]);
+            } else {
+                const result = await axios.get('https://api.twitch.tv/helix/streams?first=1', {
+                    headers: {
+                        Authorization: 'Bearer ' + token,
+                        'Client-id': 'rkyu7ywqgxxchwqhzk37jgvv1jdx1r'
+                    }
+                });
+                return res.json(result.data.data[0]);
+            }
         } catch (e) {
             return next(e)
         }
