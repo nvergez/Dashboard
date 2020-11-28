@@ -10,12 +10,16 @@ We chose ReactJS for the frontend service and all the others uses nodeJS.
 > docker-compose up      /* For run the project */
 ```
 ---
-## Documentation
+## Documentation 
+### APIs
 - [Authentication service](api/auth)
 - [Twitter service](api/twitterb)
 - [Twitch service](api/twitch)
 - [Youtube service](api/youtube)
-- [Frontend](app)
+### Graphical
+- [Graphical charter](documentation/charte_graphique_Dashboard.pdf)
+### Technical
+- [Architecture](documentation/microservice_architecture.pdf)
 ---
 ## Authors
 - Nicolas Vergez
