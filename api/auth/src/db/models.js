@@ -73,14 +73,18 @@ UserSession.init(
   }
 );
 
-function syncing() {
+function syncUser() {
   User.sync();
-  UserSession.sync();
+  setTimeout(syncSession, 10000);
+}
+
+function syncSession() {
+  UserSession.sync()
   console.log("Tables exported !");
 }
 
 console.log("Exporting tables ...")
 
-setTimeout(syncing, 15000);
+setTimeout(syncUser, 20000);
 
 module.exports = {User, UserSession};

@@ -21,7 +21,7 @@ class NumberWidgetContainer extends Component {
     componentDidMount() {
         this._isMounted = true;
         this.getData().then(_ => {
-            this.interval = setInterval(this.getData, 360000);
+            this.interval = setInterval(this.getData, 180000);
         });
     }
 
