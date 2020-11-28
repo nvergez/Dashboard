@@ -17,7 +17,7 @@ We chose ReactJS for the frontend service and all the others uses nodeJS.
 - [Twitch service](api/twitch)
 - [Youtube service](api/youtube)
 ### Graphical
-- [Graphical charter](documentation/charte graphique Dashboard.pdf)
+- [Graphical charter](documentation/charte\ graphique\ Dashboard.pdf)
 ### Technical
 - [Architecture](documentation/microservice_architecture.pdf)
 ---
