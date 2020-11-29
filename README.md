@@ -10,6 +10,20 @@ We chose ReactJS for the frontend service and all the others uses nodeJS.
 > docker-compose up      /* For run the project */
 ```
 ---
+## Services & Widgets
+- Twitter (Authentication needed)
+  - Follower count
+  - Make a tweet
+  - Display last direct message
+- Twitch (Authentication needed)
+  - Views count
+  - Display the stream with the most viewers
+  - Display infos about a stream
+- Youtube
+  - Views count of a video
+  - Followers count of a channel
+  - Display last comment of a video
+---
 ## Documentation 
 ### APIs
 - [Authentication service](api/auth)
