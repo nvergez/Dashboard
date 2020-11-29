@@ -91,7 +91,7 @@ function RegistrationForm(props) {
                 </div>
                 <button
                     type="submit"
-                    className="btn btn-primary"
+                    className="buttonLog"
                     onClick={handleSubmitClick}
                 >
                     Register
@@ -102,7 +102,7 @@ function RegistrationForm(props) {
             </div>
             <div className="mt-2">
                 <span>Already have an account? </span>
-                <span className="loginText" onClick={() => redirectToLogin()}>Login here</span>
+                <span className="loginText" onClick={() => redirectToLogin()} style={{color: "#42B72A"}}>Login here</span>
             </div>
         </div>
     )

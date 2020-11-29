@@ -80,8 +80,9 @@ function LoginForm(props) {
                 </div>
                 <button
                     type="submit"
-                    className="btn btn-primary"
+                    className="buttonLog"
                     onClick={handleSubmitClick}
+                    color="#42B72A"
                 >Submit</button>
             </form>
             <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
@@ -89,7 +90,7 @@ function LoginForm(props) {
             </div>
             <div className="registerMessage">
                 <span>Dont have an account? </span>
-                <span className="loginText" onClick={() => redirectToRegister()}>Register</span>
+                <span className="loginText" onClick={() => redirectToRegister()} style={{color: "#42B72A"}}>Register</span>
             </div>
             <div className="loginImgur">
                 <a href={getUrlImgur()}>Login with Imgur</a>
