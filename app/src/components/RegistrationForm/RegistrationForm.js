@@ -55,7 +55,13 @@ function RegistrationForm(props) {
         }
     }
     return(
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center" style={{top:100}}>
+        <div>
+        <nav className="color-nav">
+        <div className="row col-12 d-flex justify-content-center text-white">
+        <span className="h3" style={{color: "#42B72A"}}>Dashboard</span>
+        </div>
+        </nav>
+        <div className="card col-12 col-lg-4 login-card mt-2 hv-center" style={{left: 500, top:100}}>
             <form>
                 <div class="rem">Register</div>
                 <div className="form-group text-left">
@@ -104,6 +110,7 @@ function RegistrationForm(props) {
                 <span>Already have an account? </span>
                 <span className="loginText" onClick={() => redirectToLogin()} style={{color: "#42B72A"}}>Login here</span>
             </div>
+        </div>
         </div>
     )
 }

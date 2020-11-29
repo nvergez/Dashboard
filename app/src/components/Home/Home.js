@@ -25,8 +25,8 @@ import './Home.css'
 class Home extends Component {
     _isMounter = false;
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             twitterFollowers: false,
@@ -38,6 +38,7 @@ class Home extends Component {
             viewVideoCount: false,
             subsChannelCount: false,
             LastComment: false,
+            renderView: false,
             twitterAuth: localStorage.getItem("TOKEN_TWITTER") ? true : false
         }
 
@@ -47,6 +48,12 @@ class Home extends Component {
         this.setState({ ...this.state, [event.target.name]: event.target.checked });
       };
 
+    clickBtn = () => {
+        {this.state.renderView === false ?
+        this.setState({ ...this.state, renderView: true})
+        : this.setState({ ...this.state, renderView: false})}
+    };
+
     componentDidMount() {
         var res = getUser(localStorage.getItem("ID_TOKEN"));
         res.then((value) => {
@@ -54,6 +61,11 @@ class Home extends Component {
                 this.redirectToLogin()
             }
         })
+    }
+
+    handleLogout() {
+        localStorage.removeItem("ID_TOKEN")
+        this.props.history.push('/login')
     }
 
     componentDidUpdate() {
@@ -75,8 +87,9 @@ class Home extends Component {
         this.setState({ ...this.state, twitterAuth: true })
     };
 
-    render() {
-        return(
+    renderMenu() {
+        if (this.state.renderView === true) {
+                return (
             <div className="mt-2">
                 {this.state.twitterAuth ? <FormControl component="fieldset">
                     <FormLabel component="legend">Choose your twitter's widgets</FormLabel>
@@ -129,6 +142,34 @@ class Home extends Component {
                         />
                     </FormGroup>
                 </FormControl>
+            </div>
+            )
+        }
+    }
+
+    render() {
+        return(
+            <div>
+            <nav className="color-nav">
+            <div className="row col-12 d-flex justify-content-center text-white">
+            <div className="mr-auto">
+                <button className="buttonL"
+                    onClick={this.clickBtn}
+                    style={{width: "100px", height :42, color: "#ffffff"}}>
+                        Menu
+                </button>
+            </div>
+            <span className="h3" style={{color: "#42B72A"}}>Dashboard</span>
+            <div className="ml-auto">
+                    <button className="buttonL"
+                    onClick={() => this.handleLogout()}
+                    style={{width: "100px", height :42, color: "#ffffff"}}>
+                        Logout
+                    </button>
+                </div>
+                </div>
+            </nav>
+                {this.renderMenu()}
                 <div className="Home">
                     <div className="ServiceTwitch">
                         {localStorage.getItem("TOKEN_TWITCH") == null ? <div className="loginTwitch">

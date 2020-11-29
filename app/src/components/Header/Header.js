@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 
+import './../Home/Home.js'
 import './Header.css'
 
 function Header(props) {
@@ -30,7 +31,7 @@ function Header(props) {
             return(
                 <div className="mr-auto">
                     <button className="buttonL"
-                    onClick={() => openMenu()}
+                    onClick={props.clickBtn}
                     style={{width: "100px", height :42, color: "#ffffff"}}>
                         Menu
                     </button>
@@ -39,11 +40,8 @@ function Header(props) {
         }
     }
     function openMenu() {
-        return(
-            <div>
-                <p>salut mon pote</p>
-            </div>
-        )
+        {localStorage.getItem("OPEN_MENU") === "menu" ?
+        localStorage.removeItem("OPEN_MENU") : localStorage.setItem("OPEN_MENU", "menu")}
     }
     function handleLogout() {
         localStorage.removeItem("ID_TOKEN")

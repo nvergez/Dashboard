@@ -51,7 +51,13 @@ function LoginForm(props) {
         props.updateTitle('Register');
     }
     return(
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center" style={{top:100}}>
+        <div>
+        <nav className="color-nav">
+        <div className="row col-12 d-flex justify-content-center text-white">
+        <span className="h3" style={{color: "#42B72A"}}>Dashboard</span>
+        </div>
+        </nav>
+        <div className="card col-12 col-lg-4 login-card mt-2 hv-center" style={{top:100, left:500}}>
             <form>
                 <div className="rem">Login</div>
                 <div className="form-group text-left">
@@ -82,7 +88,6 @@ function LoginForm(props) {
                     type="submit"
                     className="buttonLog"
                     onClick={handleSubmitClick}
-                    color="#42B72A"
                 >Submit</button>
             </form>
             <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
@@ -95,6 +100,7 @@ function LoginForm(props) {
             <div className="loginImgur">
                 <a href={getUrlImgur()}>Login with Imgur</a>
             </div>
+        </div>
         </div>
     )
 }
