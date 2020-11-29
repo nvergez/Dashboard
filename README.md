@@ -10,6 +10,7 @@ We chose ReactJS for the frontend service and all the others uses nodeJS.
 > docker-compose up      /* For run the project */
 ```
 You can access to the main application (frontend) at http://localhost.
+
 ---
 ## Services & Widgets
 - Twitter (Authentication needed)
