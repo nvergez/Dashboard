@@ -66,6 +66,7 @@ class Home extends Component {
 
     handleLogout() {
         localStorage.removeItem("ID_TOKEN")
+        localStorage.clear();
         this.props.history.push('/login')
     }
 
