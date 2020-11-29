@@ -29,15 +29,15 @@ class Home extends Component {
         super(props);
 
         this.state = {
-            twitterFollowers: false,
-            makeATweet: false,
-            LastDm: false,
-            twitchViews: false,
-            firstStream: false,
-            searchStream: false,
-            viewVideoCount: false,
-            subsChannelCount: false,
-            LastComment: false,
+            twitterFollowers: (localStorage.getItem("twitterFollowers") === "true") ? true : false,
+            makeATweet: (localStorage.getItem("makeATweet") === "true") ? true : false,
+            LastDm: (localStorage.getItem("LastDm") === "true") ? true : false,
+            twitchViews: (localStorage.getItem("twitchViews") === "true") ? true : false,
+            firstStream: (localStorage.getItem("firstStream") === "true") ? true : false,
+            searchStream: (localStorage.getItem("searchStream") === "true") ? true : false,
+            viewVideoCount: (localStorage.getItem("viewVideoCount") === "true") ? true : false,
+            subsChannelCount: (localStorage.getItem("subsChannelCount") === "true") ? true : false,
+            LastComment: (localStorage.getItem("LastComment") === "true") ? true : false,
             renderView: false,
             twitterAuth: localStorage.getItem("TOKEN_TWITTER") ? true : false
         }
@@ -46,6 +46,7 @@ class Home extends Component {
 
     handleChange = (event) => {
         this.setState({ ...this.state, [event.target.name]: event.target.checked });
+        localStorage.setItem(event.target.name, event.target.checked);
       };
 
     clickBtn = () => {
