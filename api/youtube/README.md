@@ -10,7 +10,7 @@ This microservice use nodeJS as langage.
 ---
 ### Get video info by Id
 
-Create a new user in the database. You optain the userId in return.
+Give some infos about a video by video id.
 
 Request type: `GET`  
 
@@ -33,7 +33,7 @@ Return:
 ---
 ### Get subscribers count by id
 
-You have to put the userId in parameter, if exists you optain all user informations.
+Give some infos about channel by channel id.
 
 Request type: `GET`  
 
@@ -56,7 +56,7 @@ Return:
 ---
 ### Get last comment by video id
 
-Delete current user with the userId in parameter.
+Get the last comment of a video by video id.
 
 Request type: `GET`  
 
