@@ -82,6 +82,10 @@ class Home extends Component {
     }
 
     authTwitterHandler = (err, data) => {
+        if (typeof data == "undefined")
+            return;
+        if (typeof data.oauth_token == "undefined")
+            return;
         localStorage.setItem("TOKEN_TWITTER", data.oauth_token)
         localStorage.setItem("SECRET_TWITTER", data.oauth_token_secret)
         this.setState({ ...this.state, twitterAuth: true })
