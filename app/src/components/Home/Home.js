@@ -16,6 +16,9 @@ import LastDmWidgetContainer from '../Widget/LastDmWidget/LastDmWidget';
 import ViewsTwitchWidgetContainer from '../Widget/ViewsTwitchWidget/ViewsTwitchWidget';
 import BestStreamWidgetContainer from '../Widget/BestStreamWidget/BestStreamWidget';
 import StreamWidgetContainer from '../Widget/StreamWidget/StreamWidget';
+import VideoViewsWidgetContainer from '../Widget/VideoViewsWidget/VideoViewsWidget';
+import ChannelSubsWidgetContainer from '../Widget/ChannelSubsWidget/ChannelSubsWidget';
+import LastCommentWidgetContainer from '../Widget/LastCommentWidget/LastCommentWidget';
 
 import './Home.css'
 
@@ -32,8 +35,12 @@ class Home extends Component {
             twitchViews: false,
             firstStream: false,
             searchStream: false,
+            viewVideoCount: false,
+            subsChannelCount: false,
+            LastComment: false,
             twitterAuth: localStorage.getItem("TOKEN_TWITTER") ? true : false
         }
+
     }
 
     handleChange = (event) => {
@@ -105,6 +112,23 @@ class Home extends Component {
                         />
                     </FormGroup>
                 </FormControl> : null}
+                <FormControl component="fieldset">
+                    <FormLabel component="legend">Choose your youtube's widgets</FormLabel>
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Checkbox checked={this.state.viewVideoCount} onChange={this.handleChange} name="viewVideoCount" />}
+                            label="Get the number of views of the choosen video"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox checked={this.state.subsChannelCount} onChange={this.handleChange} name="subsChannelCount" />}
+                            label="Get the number of subscribers of the choosen channel"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox checked={this.state.LastComment} onChange={this.handleChange} name="LastComment" />}
+                            label="Get the last comment of the choosen video"
+                        />
+                    </FormGroup>
+                </FormControl>
                 <div className="Home">
                     <div className="ServiceTwitch">
                         {localStorage.getItem("TOKEN_TWITCH") == null ? <div className="loginTwitch">
@@ -127,6 +151,9 @@ class Home extends Component {
                         {this.state.twitchViews ? <ViewsTwitchWidgetContainer heading="Your views number on Twitch"/> : null}
                         {this.state.firstStream ? <BestStreamWidgetContainer heading="First stream in viewers"/> : null}
                         {this.state.searchStream ? <StreamWidgetContainer heading="Search a streamer"/> : null}
+                        {this.state.viewVideoCount ? <VideoViewsWidgetContainer heading="Youtube video views count"/> : null}
+                        {this.state.subsChannelCount ? <ChannelSubsWidgetContainer heading="Youtube channel subscribers count"/> : null}
+                        {this.state.LastComment ? <LastCommentWidgetContainer heading="Last comment youtube video"/> : null}
                     </div>
                 </div>
             </div>

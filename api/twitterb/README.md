@@ -10,7 +10,7 @@ This microservice use nodeJS as langage.
 ---
 ### Get followers count 
 
-Create a new user in the database. You optain the userId in return.
+Get the follower count of the account corresponding to the tokens. You optain the count in return.
 
 Request type: `GET`  
 
@@ -31,7 +31,7 @@ Return:
 ---
 ### Post a tweet 
 
-You have to put the userId in parameter, if exists you optain all user informations.
+Post a tweet with the account corresponding to the given tokens. Return OK|KO.
 
 Request type: `POST`  
 
@@ -60,7 +60,7 @@ Return:
 ---
 ### Get last DM
 
-Delete current user with the userId in parameter.
+Get the last direct message of the account correponding to the given tokens. Return the message.
 
 Request type: `GET`  
 

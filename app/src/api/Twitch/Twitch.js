@@ -10,8 +10,8 @@ async function getTwitchViews(token) {
     return res.data[0].view_count;
 }
 
-async function getBestStream(token) {
-    const res = await axios.get('http://localhost:9001/best_stream/' + token)
+async function getBestStream(token, lang = 'en') {
+    const res = await axios.get('http://localhost:9001/best_stream/' + token + '?lang=' + lang)
     return res.data
 }
 

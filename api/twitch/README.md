@@ -1,16 +1,16 @@
-# Twitter API
+# Twitch API
 
 This microservice use nodeJS as langage.
 
 ## Routes
 ---
 ### URL  
-`http://localhost:9002`  
+`http://localhost:9001`  
 
 ---
 ### Get User infos
 
-Create a new user in the database. You optain the userId in return.
+Get basics infos about the user corresponding to the given token. Return the infos
 
 Request type: `GET`  
 
@@ -23,13 +23,18 @@ Return:
 }
 ```
 ---
-### Get greatest Stream
+### Get best Stream
 
-You have to put the userId in parameter, if exists you optain all user informations.
+Get the stream with the most viewers. Can precise language. Return the stream.
 
 Request type: `GET`  
 
 URL: `/best_stream/:token`
+
+Query:
+{
+    lang="fr"
+}
 
 
 Return:
@@ -42,7 +47,7 @@ Return:
 ---
 ### Get stream by username
 
-Delete current user with the userId in parameter.
+Get current stream infos of a user, by username.
 
 Request type: `GET`  
 
