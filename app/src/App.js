@@ -19,8 +19,6 @@ function App() {
   return (
     <Router>
     <div className="App">
-      <Header title={title}/>
-        <div className="container d-flex align-items-center flex-column">
           <Switch>
             <Route path="/" exact={true}>
               <RegistrationForm showError={updateErrorMessage} updateTitle={updateTitle}/>
@@ -43,11 +41,9 @@ function App() {
           </Switch>
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
         </div>
-    </div>
     </Router>
   );
 }
 
 export default App;
-
 /* https://id.twitch.tv/oauth2/authorize?client_id=rkyu7ywqgxxchwqhzk37jgvv1jdx1r&response_type=token&redirect_uri=http://localhost/oauth_twitch */

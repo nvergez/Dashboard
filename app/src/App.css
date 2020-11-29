@@ -29,14 +29,26 @@ body {
 }
 
 .color-nav {
-  background-color: #42B72A;
+  background-color: #474742;
+}
+
+.color-green {
+  color: #42B72A;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-
+.buttonLog {
+  background-color: #42B72A;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+}
 
 @keyframes App-logo-spin {
   from {

@@ -7,6 +7,20 @@ import { getImgurAccount } from '../../api/oauth/Imgur'
 function ImgurCallback(props) {
     var new_url = props.url.replace("#", "?");
     var query = url.parse(new_url, true).query;
+
+    const redirectToHome = () => {
+        props.updateTitle('Home')
+        props.history.push('/home');
+    }
+    const redirectToLogin = () => {
+        props.history.push('/login'); 
+        props.updateTitle('Login');
+    }
+
+    if (query.error) {
+        redirectToLogin();
+        props.showError("Access deny.")
+    }
     
     if (query.access_token) {
         var res = getImgurAccount(query.access_token);
@@ -48,14 +62,6 @@ function ImgurCallback(props) {
         })
     }
     
-    const redirectToHome = () => {
-        props.updateTitle('Home')
-        props.history.push('/home');
-    }
-    const redirectToLogin = () => {
-        props.history.push('/login'); 
-        props.updateTitle('Login');
-    }
     return(
         <p>Loading ...</p>
     )
