@@ -1,5 +1,7 @@
 # Dashboard
 
+This project is an implementation of a web application that works like Netvibes.
+
 We chose a microservices architecture for this project because it offers increased modularity, making applications easier to develop, test, deploy, and, more importantly, change and maintain.
 We chose ReactJS for the frontend service and all the others uses nodeJS.
 
